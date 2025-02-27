@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Watchlist</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-input" placeholder="Search eg: infy bse, nifty fut, index fund, etc">
+                <span class="search-stats">5 / 100</span>
+            </div>
+            <div class="tabs">
+                <div class="tab active">Chart</div>
+                <div class="tab">Option chain</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="watchlist">
+                <div class="watchlist-item" data-symbol="NIFTY50">
+                    <div class="stock-name">NIFTY 50 <span class="stock-type">INDEX</span></div>
+                    <div class="stock-price-container">
+                        <div class="stock-change down">-2.50</div>
+                        <div class="stock-percent down">-0.01%</div>
+                        <div class="stock-price">22545.05</div>
+                    </div>
+                </div>
+                
+                <div class="watchlist-item" data-symbol="NIFTYBANK">
+                    <div class="stock-name">NIFTY BANK <span class="stock-type">INDEX</span></div>
+                    <div class="stock-price-container">
+                        <div class="stock-change up">135.45</div>
+                        <div class="stock-percent up">0.28%</div>
+                        <div class="stock-price">48743.80</div>
+                    </div>
+                </div>
+                
+                <div class="watchlist-item" data-symbol="NIFTYFINSERVICE">
+                    <div class="stock-name">NIFTY FIN SERVICE <span class="stock-type">INDEX</span></div>
+                    <div class="stock-price-container">
+                        <div class="stock-change up">137.60</div>
+                        <div class="stock-percent up">0.60%</div>
+                        <div class="stock-price">23173.65</div>
+                    </div>
+                </div>
+                
+                <div class="watchlist-item" data-symbol="SENSEX">
+                    <div class="stock-name">SENSEX <span class="stock-type">INDEX</span></div>
+                    <div class="stock-price-container">
+                        <div class="stock-change up">10.31</div>
+                        <div class="stock-percent up">0.01%</div>
+                        <div class="stock-price">74612.43</div>
+                    </div>
+                </div>
+                
+                <div class="watchlist-item" data-symbol="NIFTYMIDSELECT">
+                    <div class="stock-name">NIFTY MID SELECT <span class="stock-type">INDEX</span></div>
+                    <div class="stock-price-container">
+                        <div class="stock-change down">-98.05</div>
+                        <div class="stock-percent down">-0.89%</div>
+                        <div class="stock-price">10957.30</div>
+                    </div>
+                </div>
+                
+                <div class="add-to-watchlist">
+                    <button id="add-stock-btn"><i class="fas fa-plus"></i> Add Stock</button>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-header">
+                    <div class="symbol-search">
+                        <input type="text" id="symbol-input" placeholder="Enter Symbol">
+                    </div>
+                    <div class="current-symbol">NIFTY 50</div>
+                    <div class="chart-actions">
+                        <button class="action-btn compare-btn"><i class="fas fa-plus"></i> Compare...</button>
+                    </div>
+                </div>
+                
+                <div class="chart-toolbar">
+                    <div class="chart-tool"><i class="fas fa-chart-bar"></i></div>
+                    <div class="chart-tool">5m <i class="fas fa-caret-down"></i></div>
+                    <div class="chart-tool">Views <i class="fas fa-caret-down"></i></div>
+                    <div class="chart-tool">Studies <i class="fas fa-caret-down"></i></div>
+                    <div class="chart-tool">Layout <i class="fas fa-caret-down"></i></div>
+                    <div class="chart-tool">Events <i class="fas fa-caret-down"></i></div>
+                    <div class="chart-tool"><i class="fas fa-cog"></i></div>
+                    <div class="chart-tool"><i class="fas fa-pen"></i></div>
+                    <div class="chart-tool"><i class="fas fa-plus"></i></div>
+                    <div class="chart-tool"><i class="fas fa-comment"></i></div>
+                    <div class="chart-tool"><i class="fas fa-th-large"></i></div>
+                    <div class="chart-tool"><i class="fas fa-bolt"></i></div>
+                    <div class="chart-tool"><i class="fas fa-redo"></i></div>
+                    <div class="chart-tool"><i class="fas fa-expand"></i></div>
+                    <div class="chart-tool trade-btn">Trade</div>
+                </div>
+                
+                <div id="chart"></div>
+                
+                <div class="chart-footer">
+                    <div class="time-labels">
+                        <span>12:00</span>
+                        <span>13:00</span>
+                        <span>14:00</span>
+                        <span>15:00</span>
+                        <span>10:00</span>
+                        <span>11:00</span>
+                        <span>12:00</span>
+                        <span>13:00</span>
+                        <span>14:00</span>
+                    </div>
+                    <div class="chart-brand">ZERODHA</div>
+                    <div class="chart-controls">
+                        <buttonbutton class="chart-control" title="Zoom Out"><i class="fas fa-minus"></i></button>
+                        <button class="chart-control"><i class="fas fa-plus"></i></button>
+                        <button class="chart-control"><i class="fas fa-expand"></i></button>
+                    </div>
+                    <div class="current-price">22510.85</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Stock Modal -->
+    <div id="add-stock-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add to Watchlist</h2>
+            <form id="add-stock-form">
+                <div class="form-group">
+                    <label for="stock-symbol">Symbol:</label>
+                    <input type="text" id="stock-symbol" required>
+                </div>
+                <div class="form-group">
+                    <label for="stock-name">Name:</label>
+                    <input type="text" id="stock-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="stock-type">Type:</label>
+                    <select id="stock-type">
+                        <option value="INDEX">INDEX</option>
+                        <option value="STOCK">STOCK</option>
+                        <option value="FUTURES">FUTURES</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Add</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/watchlist.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
